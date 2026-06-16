@@ -14,4 +14,8 @@
     <PackageReference Include="Ardalis.GuardClauses" Version="5.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ToDoManager.Shared\ToDoManager.Shared.csproj" />
+  </ItemGroup>
+
 </Project>
