@@ -7,13 +7,30 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="ToDoManager.Client\Common\Enums\" />
-    <Folder Include="ToDoManager.Services\" />
-    <Folder Include="ToDoManager.Server.Integration.Tests\" />
-    <Folder Include="ToDoManager.Persistence\" />
-    <Folder Include="ToDoManager.Domain.Tests\" />
-    <Folder Include="ToDoManager.Client.Tests\" />
-    <Folder Include="ToDoManager.Client\Infrastructure\" />
+    <Compile Remove="ToDoManager.Client.Tests\**" />
+    <Compile Remove="ToDoManager.Client\**" />
+    <Compile Remove="ToDoManager.Domain.Tests\**" />
+    <Compile Remove="ToDoManager.Persistence\**" />
+    <Compile Remove="ToDoManager.Server.Integration.Tests\**" />
+    <Compile Remove="ToDoManager.Services\**" />
+    <Content Remove="ToDoManager.Client.Tests\**" />
+    <Content Remove="ToDoManager.Client\**" />
+    <Content Remove="ToDoManager.Domain.Tests\**" />
+    <Content Remove="ToDoManager.Persistence\**" />
+    <Content Remove="ToDoManager.Server.Integration.Tests\**" />
+    <Content Remove="ToDoManager.Services\**" />
+    <EmbeddedResource Remove="ToDoManager.Client.Tests\**" />
+    <EmbeddedResource Remove="ToDoManager.Client\**" />
+    <EmbeddedResource Remove="ToDoManager.Domain.Tests\**" />
+    <EmbeddedResource Remove="ToDoManager.Persistence\**" />
+    <EmbeddedResource Remove="ToDoManager.Server.Integration.Tests\**" />
+    <EmbeddedResource Remove="ToDoManager.Services\**" />
+    <None Remove="ToDoManager.Client.Tests\**" />
+    <None Remove="ToDoManager.Client\**" />
+    <None Remove="ToDoManager.Domain.Tests\**" />
+    <None Remove="ToDoManager.Persistence\**" />
+    <None Remove="ToDoManager.Server.Integration.Tests\**" />
+    <None Remove="ToDoManager.Services\**" />
   </ItemGroup>
 
   <ItemGroup>
