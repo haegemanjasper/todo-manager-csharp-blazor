@@ -1,6 +1,6 @@
 ﻿
 
-namespace ToDoManager.Domain.Common.Enums
+namespace ToDoManager.Shared.Common.Enums
 {
     public enum Priority
     {

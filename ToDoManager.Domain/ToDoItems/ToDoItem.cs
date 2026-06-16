@@ -1,8 +1,8 @@
 ﻿using Ardalis.GuardClauses;
 using ToDoManager.Domain.Common;
-using ToDoManager.Domain.Common.Enums;
+using ToDoManager.Shared.Common.Enums;
 
-namespace ToDoManager.Domain.ToDoItem;
+namespace ToDoManager.Domain.ToDoItems;
 
 public class ToDoItem : Entity
 {
@@ -11,13 +11,15 @@ public class ToDoItem : Entity
     public required string Title 
     {
         get => _title;
-        set => Guard.Against.NullOrWhiteSpace(value); 
+        set => _title = Guard.Against.NullOrWhiteSpace(value); 
     }
 
     private Priority _priority = default!;
     public Priority Priority 
     {   
         get => _priority; 
-        set => Guard.Against.EnumOutOfRange(value); 
+        set => _priority = Guard.Against.EnumOutOfRange(value); 
     }
+    public bool IsCompleted { get; set; }
 }
+
