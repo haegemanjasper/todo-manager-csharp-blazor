@@ -7,14 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="ToDoManager.Shared\" />
+    <Folder Include="ToDoManager.Client\Common\Enums\" />
     <Folder Include="ToDoManager.Services\" />
     <Folder Include="ToDoManager.Server.Integration.Tests\" />
     <Folder Include="ToDoManager.Persistence\" />
     <Folder Include="ToDoManager.Domain.Tests\" />
-    <Folder Include="ToDoManager.Domain\" />
     <Folder Include="ToDoManager.Client.Tests\" />
-    <Folder Include="ToDoManager.Client\Common\" />
     <Folder Include="ToDoManager.Client\Infrastructure\" />
   </ItemGroup>
 
