@@ -14,8 +14,4 @@
     <ProjectReference Include="..\ToDoManager.Domain\ToDoManager.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="NewFolder\" />
-  </ItemGroup>
-
 </Project>
