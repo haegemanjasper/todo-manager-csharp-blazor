@@ -1,27 +1,60 @@
-using ToDoManager.Server.Components;
+using Microsoft.EntityFrameworkCore;
+using ToDoManager.Persistence;
+using ToDoManager.Persistence.Interceptors;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-builder.Services.AddRazorComponents()
-    .AddInteractiveServerComponents();
+// controllers
+builder.Services.AddControllers();
+
+// swagger
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
+// interceptor
+builder.Services.AddScoped<EntityInterceptor>();
+
+// database
+builder.Services.AddDbContext<ApplicationDbContext>((sp, options) =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer"));
+
+    options.AddInterceptors(sp.GetRequiredService<EntityInterceptor>());
+
+    options.EnableDetailedErrors();
+    options.EnableSensitiveDataLogging();
+});
+
+// services TODO
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
+// swagger
+if (app.Environment.IsDevelopment())
 {
-    app.UseExceptionHandler("/Error", createScopeForErrors: true);
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-    app.UseHsts();
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
 
 app.UseHttpsRedirection();
+app.UseAuthorization();
+app.MapControllers();
 
-app.UseStaticFiles();
-app.UseAntiforgery();
+// db migration and seeding by startup
+using (var scope = app.Services.CreateScope())
+{
+    var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
 
-app.MapRazorComponents<App>()
-    .AddInteractiveServerRenderMode();
+    dbContext.Database.Migrate();
+
+    var seeder = new Seeder(dbContext);
+    seeder.Seed();
+}
 
 app.Run();
+
+// integration test
+public partial class Program
+{
+
+}
