@@ -7,8 +7,7 @@ using ToDoManager.Domain.Exceptions;
 using Microsoft.EntityFrameworkCore;
 
 
-namespace ToDoManager.Services.ToDoItems
-{
+namespace ToDoManager.Services.ToDoItems;
     public class ToDoItemService : IToDoItemService
     {
         private readonly IValidator<ToDoItemDto.Create> _createValidator;
@@ -64,8 +63,10 @@ namespace ToDoManager.Services.ToDoItems
 
         public async Task DeleteAsync(int id)
         {
+            ToDoItem? toDoItem = await _dbContext.ToDoItems.FindAsync(id);
+            if (toDoItem is null)
+                throw new EntityNotFoundException(nameof(toDoItem), id);
 
-        }
-
+            await _dbContext.ToDoItems.Where(t => t.Id == id).ExecuteDeleteAsync();
     }
 }
