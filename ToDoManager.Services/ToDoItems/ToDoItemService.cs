@@ -57,6 +57,14 @@ namespace ToDoManager.Services.ToDoItems
 
             if (await _dbContext.ToDoItems.Where(t => t.Id != id).AnyAsync(t => t.Title == toDoItemDto.Title))
                 throw new EntityAlreadyExistsException(nameof(ToDoItem), nameof(ToDoItem.Title), toDoItemDto.Title);
+
+            _mapper.Map(toDoItemDto, toDoItem);
+            await _dbContext.SaveChangesAsync();
+        }
+
+        public async Task DeleteAsync(int id)
+        {
+
         }
 
     }
