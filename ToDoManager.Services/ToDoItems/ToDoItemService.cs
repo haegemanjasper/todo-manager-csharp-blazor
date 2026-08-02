@@ -3,6 +3,8 @@ using FluentValidation;
 using ToDoManager.Shared.ToDoItems;
 using ToDoManager.Persistence;
 using ToDoManager.Domain.ToDoItems;
+using ToDoManager.Domain.Exceptions;
+using Microsoft.EntityFrameworkCore;
 
 
 namespace ToDoManager.Services.ToDoItems
@@ -28,7 +30,10 @@ namespace ToDoManager.Services.ToDoItems
 
             ToDoItem? toDoItem = await _dbContext.ToDoItems.FindAsync(id);
             if (toDoItem is null)
-                throw new 
+                throw new EntityNotFoundException(nameof(toDoItem), id);
+
+            if (await _dbContext.ToDoItems.Where(t => t.Id != id).AnyAsync(t => t.Title == toDoItemDto.Title))
+                throw new EntityAlreadyExistsException(nameof(ToDoItem), nameof(ToDoItem.Title), toDoItemDto.Title);
         }
 
     }
