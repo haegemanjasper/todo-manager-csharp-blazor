@@ -32,6 +32,21 @@ namespace ToDoManager.Services.ToDoItems
             return _mapper.Map<ToDoItemDto.Detail>(toDoItem);
         }
 
+        public async Task<ToDoItemDto.Index> CreateAsync(ToDoItemDto.Create toDoItemDto)
+        {
+            await _createValidator.ValidateAndThrowAsync(toDoItemDto);
+
+            if (await _dbContext.ToDoItems.AnyAsync(t => t.Title == toDoItemDto.Title))
+                throw new EntityAlreadyExistsException(nameof(ToDoItem), nameof(ToDoItem.Title), nameof(toDoItemDto.Title);
+
+            var toDoItem = _mapper.Map<ToDoItem>(toDoItemDto);
+
+            await _dbContext.ToDoItems.AddAsync(toDoItem);
+            await _dbContext.SaveChangesAsync();
+
+            return _mapper.Map<ToDoItemDto.Index>(toDoItem);
+        }
+
         public async Task EditAsync(int id, ToDoItemDto.Edit toDoItemDto)
         {
             await _editValidator.ValidateAndThrowAsync(toDoItemDto);
