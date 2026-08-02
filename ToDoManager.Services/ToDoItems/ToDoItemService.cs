@@ -24,6 +24,14 @@ namespace ToDoManager.Services.ToDoItems
             _mapper = mapper;
         }
 
+        public async Task<ToDoItemDto.Detail> GetDetailAsync(int id)
+        {
+            ToDoItem? toDoItem = await _dbContext.ToDoItems.FindAsync(id);
+            if (toDoItem is null)
+                throw new EntityNotFoundException(nameof(toDoItem), id);
+            return _mapper.Map<ToDoItemDto.Detail>(toDoItem);
+        }
+
         public async Task EditAsync(int id, ToDoItemDto.Edit toDoItemDto)
         {
             await _editValidator.ValidateAndThrowAsync(toDoItemDto);
