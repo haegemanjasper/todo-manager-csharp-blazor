@@ -5,7 +5,7 @@ using ToDoManager.Domain.Common;
 
 namespace ToDoManager.Persistence.Interceptors
 {
-    internal class EntityInterceptor : SaveChangesInterceptor
+    public class EntityInterceptor : SaveChangesInterceptor
     {
         public override InterceptionResult<int> SavingChanges(DbContextEventData eventData, InterceptionResult<int> result)
         {

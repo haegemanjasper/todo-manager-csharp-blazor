@@ -1,6 +1,6 @@
-﻿namespace ToDoManager.Client
-{
-    public class MainLayout
-    {
-    }
-}
+﻿//namespace ToDoManager.Client
+//{
+//    public class MainLayout
+//    {
+//    }
+//}

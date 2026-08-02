@@ -40,9 +40,15 @@ namespace ToDoManager.Persistence
             {
                 new()
                 {
-                    Title = "Deadline ToDoManager 21-06-2026",
+                    Title = "Preparing for sollicitation 04/08/26",
                     Priority = Priority.High
-                }
+                },
+
+                new()
+                {
+                    Title = "Research around SAP and Database Queries",
+                    Priority = Priority.Medium
+                },
             };
 
             _dbContext.ToDoItems.AddRange(items);

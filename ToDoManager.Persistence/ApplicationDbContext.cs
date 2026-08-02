@@ -10,6 +10,12 @@ namespace ToDoManager.Persistence
 {
     public class ApplicationDbContext : DbContext
     {
+
+      public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
+        {
+
+        }  
+    
         public DbSet<ToDoItem> ToDoItems => Set<ToDoItem>();
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
