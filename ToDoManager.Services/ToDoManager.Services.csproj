@@ -11,4 +11,10 @@
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ToDoManager.Domain\ToDoManager.Domain.csproj" />
+    <ProjectReference Include="..\ToDoManager.Persistence\ToDoManager.Persistence.csproj" />
+    <ProjectReference Include="..\ToDoManager.Shared\ToDoManager.Shared.csproj" />
+  </ItemGroup>
+
 </Project>
