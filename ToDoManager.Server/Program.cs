@@ -1,6 +1,11 @@
 using Microsoft.EntityFrameworkCore;
 using ToDoManager.Persistence;
 using ToDoManager.Persistence.Interceptors;
+using ToDoManager.Services.Common;
+using ToDoManager.Shared.ToDoItems;
+using ToDoManager.Services.ToDoItems;
+using FluentValidation;
+using MicroElements.Swashbuckle.FluentValidation.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +19,9 @@ builder.Services.AddSwaggerGen();
 // interceptor
 builder.Services.AddScoped<EntityInterceptor>();
 
+// autoMapper
+builder.Services.AddAutoMapper(typeof(MappingProfile));
+
 // database
 builder.Services.AddDbContext<ApplicationDbContext>((sp, options) =>
 {
@@ -25,7 +33,15 @@ builder.Services.AddDbContext<ApplicationDbContext>((sp, options) =>
     options.EnableSensitiveDataLogging();
 });
 
-// services TODO
+// services
+builder.Services.AddScoped<IToDoItemService, ToDoItemService>();
+
+// fluentValidation
+builder.Services.AddValidatorsFromAssemblyContaining<ToDoItemDto.Edit.Validator>();
+builder.Services.AddValidatorsFromAssemblyContaining<ToDoItemDto.Create.Validator>();
+
+builder.Services.AddFluentValidationRulesToSwagger();
+
 
 var app = builder.Build();
 

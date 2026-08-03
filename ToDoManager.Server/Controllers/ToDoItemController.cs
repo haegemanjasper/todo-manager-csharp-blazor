@@ -10,7 +10,7 @@ namespace ToDoManager.Server.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-[Authorize]
+//[Authorize]
 public class ToDoItemController : ControllerBase
 {
     private readonly IToDoItemService _toDoItemService;
